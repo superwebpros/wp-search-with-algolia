@@ -5,7 +5,7 @@
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   1.0.0
  *
- * @version 2.9.0
+ * @version 2.10.2
  * @package WebDevStudios\WPSWA
  */
 
@@ -101,7 +101,9 @@ get_header();
 								return indexUiState;
 							}
 						}
-					}
+					},
+					// https://www.algolia.com/doc/guides/building-search-ui/events/js/
+					insights: algolia.insights_enabled,
 				});
 
 				search.addWidgets([
@@ -194,12 +196,12 @@ get_header();
 				]);
 
 				if ( algolia.powered_by_enabled ) {
-					search.addWidget(
+					search.addWidgets([
 						/* Search powered-by widget */
 						instantsearch.widgets.poweredBy({
 							container: '#algolia-powered-by'
 						}),
-					)
+					]);
 				}
 
 				/* Start */

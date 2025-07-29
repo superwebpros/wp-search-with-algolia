@@ -5,7 +5,7 @@
  * @author  WebDevStudios <contact@webdevstudios.com>
  * @since   1.0.0
  *
- * @version 2.9.0
+ * @version 2.10.2
  * @package WebDevStudios\WPSWA
  */
 
@@ -50,7 +50,7 @@ get_header();
 			// window.aa('setUserToken', 'some-user-id');
 			if ( document.getElementById("algolia-search-box") ) {
 				if ( algolia.indices.searchable_posts === undefined && document.getElementsByClassName("admin-bar").length > 0 ) {
-					alert('<?php esc_html_e( "It looks like you have not indexed the searchable posts index. Please head to the Indexing page of the Algolia Search plugin and index it.", 'wp-search-with-algolia' ); ?>');
+					alert('<?php esc_html_e( 'It looks like you have not indexed the searchable posts index. Please head to the Indexing page of the Algolia Search plugin and index it.', 'wp-search-with-algolia' ); ?>');
 				}
 
 				/* Instantiate instantsearch.js */
@@ -75,9 +75,9 @@ get_header();
 								return indexUiState;
 							}
 						}
-					}
+					},
 					// https://www.algolia.com/doc/guides/building-search-ui/events/js/
-					//insights: true,
+					insights: algolia.insights_enabled,
 					/*
 					insights: {
 						insightsInitParams: {
@@ -218,12 +218,12 @@ get_header();
 				if ( algolia.powered_by_enabled ) {
 					// Search powered-by widget
 					// https://www.algolia.com/doc/api-reference/widgets/powered-by/js/
-					search.addWidget(
+					search.addWidgets([
 						/* Search powered-by widget */
 						instantsearch.widgets.poweredBy({
 							container: '#algolia-powered-by'
 						}),
-					)
+					])
 				}
 
 				/* Start */
